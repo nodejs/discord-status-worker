@@ -1,0 +1,22 @@
+{
+  "name": "status-worker",
+  "version": "2.0.0",
+  "description": "Easily follow status pages and send updates to your Discord server!",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev src/index.ts"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "statuspage",
+    "status",
+    "cloudflare workers"
+  ],
+  "author": "Daniel Walsh (@WalshyDev)",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250321.0",
+    "wrangler": "^4.4.0"
+  }
+}

@@ -1,0 +1,12 @@
+name = "discord-status-worker"
+workers_dev = false
+account_id = "fb4a2d0f103c6ff38854ac69eb709272"
+compatibility_date = "2022-10-06"
+main = "src/index.ts"
+
+kv_namespaces = [
+  { binding = "KV", id = "c9b168a3b9c3403cb8e7ba48ba5f7309", preview_id = "c9b168a3b9c3403cb8e7ba48ba5f7309" }
+]
+
+[triggers]
+crons = ["* * * * *"]
