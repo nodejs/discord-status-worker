@@ -10,3 +10,6 @@ kv_namespaces = [
 
 [triggers]
 crons = ["* * * * *"]
+
+[observability.logs]
+enabled = true
