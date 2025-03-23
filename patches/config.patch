@@ -1,0 +1,45 @@
+diff --git a/src/config.ts b/src/config.ts
+index 130f875..28dc76d 100644
+--- a/src/config.ts
++++ b/src/config.ts
+@@ -12,18 +12,18 @@ export default Object.freeze<Config>({
+   ////////////////////////////////////////
+   // Status stuff
+   ////////////////////////////////////////
+-  STATUS_URL: 'https://www.cloudflarestatus.com',
++  STATUS_URL: 'https://status.nodejs.org',
+ 
+   ////////////////////////////////////////
+   // Discord stuff
+   ////////////////////////////////////////
+-  NAME: 'Status Update',
++  NAME: 'Node.js Status',
+   // Discord bot avatar URL (Make sure to respect trademarks and brand guidelines!)
+   AVATAR_URL: '',
+   // If we should try to publish messages to Discord (requires PUBLISH_CHANNEL_ID to be an announcement channel)
+   PUBLISH_MESSAGE: true,
+   // Channel ID used for publishing
+-  PUBLISH_CHANNEL_ID: '',
++  PUBLISH_CHANNEL_ID: '1353411928529174649',
+   // Statuses you want excluded from being sent
+   EXCLUDED_STATUSES: ['maintenance'],
+ });
+diff --git a/wrangler.toml b/wrangler.toml
+index efcbbd5..f44be1f 100644
+--- a/wrangler.toml
++++ b/wrangler.toml
+@@ -1,11 +1,11 @@
+-name = "status-worker"
++name = "discord-status-worker"
+ workers_dev = false
+-account_id = ""
++account_id = "fb4a2d0f103c6ff38854ac69eb709272"
+ compatibility_date = "2022-10-06"
+ main = "src/index.ts"
+ 
+ kv_namespaces = [
+-  { binding = "KV", id = "a", preview_id = "a" }
++  { binding = "KV", id = "c9b168a3b9c3403cb8e7ba48ba5f7309", preview_id = "c9b168a3b9c3403cb8e7ba48ba5f7309" }
+ ]
+ 
+ [triggers]
