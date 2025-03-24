@@ -23,7 +23,7 @@ export default Object.freeze<Config>({
   // If we should try to publish messages to Discord (requires PUBLISH_CHANNEL_ID to be an announcement channel)
   PUBLISH_MESSAGE: true,
   // Channel ID used for publishing
-  PUBLISH_CHANNEL_ID: '1353411928529174649',
+  PUBLISH_CHANNEL_ID: '1353877471497289740',
   // Statuses you want excluded from being sent
   EXCLUDED_STATUSES: ['maintenance'],
 });

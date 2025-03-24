@@ -1,5 +1,5 @@
 diff --git a/src/config.ts b/src/config.ts
-index 130f875..28dc76d 100644
+index 130f875..04aee67 100644
 --- a/src/config.ts
 +++ b/src/config.ts
 @@ -12,18 +12,18 @@ export default Object.freeze<Config>({
@@ -20,7 +20,7 @@ index 130f875..28dc76d 100644
    PUBLISH_MESSAGE: true,
    // Channel ID used for publishing
 -  PUBLISH_CHANNEL_ID: '',
-+  PUBLISH_CHANNEL_ID: '1353411928529174649',
++  PUBLISH_CHANNEL_ID: '1353877471497289740',
    // Statuses you want excluded from being sent
    EXCLUDED_STATUSES: ['maintenance'],
  });
