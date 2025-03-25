@@ -1,0 +1,45 @@
+name: Lint Checks (ESLint / Prettier)
+
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - synchronize
+      - labeled
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Check Linting and Formatting
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    if: ${{ github.event.action == 'opened' || github.event.action == 'ready_for_review' || github.event.action == 'synchronize' || (github.event.action == 'labeled' && github.event.label.name == 'force ci') }}
+
+    steps:
+      - uses: step-security/harden-runner@4d991eb9b905ef189e4c376166672c3f2f230481 # v2.11.0
+        with:
+          egress-policy: audit
+
+      - name: Git Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        working-directory: worker
+        with:
+          node-version: lts/*
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: worker
+
+      - name: Run Prettier
+        run: node --run prettier
+        working-directory: worker
+
+      - name: Run ESLint
+        run: node --run lint
+        working-directory: worker
