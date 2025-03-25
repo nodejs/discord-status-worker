@@ -45,4 +45,5 @@ This repo is licensed under the terms of the [MIT License](./LICENSE.md). It mak
 ## Thanks
 
 - Thanks to all the contributors and collaborators that make this project possible.
+- Thanks to [Atlassian](https://atlassian.com) for providing the infrastructure that serves the Status Page under their Open Source licensing.
 - Thanks to [Cloudflare](https://cloudflare.com) for providing the infrastructure that serves the Worker under their Open Source Initiative in addition to immense support.
