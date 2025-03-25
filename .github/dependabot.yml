@@ -5,6 +5,25 @@ updates:
     directory: /
     schedule:
       interval: weekly
-
+  - package-ecosystem: npm
+    directory: '/'
+    versioning-strategy: increase
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+    groups:
+      format:
+        patterns:
+          - 'prettier'
+      lint:
+        patterns:
+          - 'eslint'
+          - 'eslint-*'
+          - '@typescript-eslint/*'
   # Worker dependencies are not updated by Dependabot as the worker is cloned from an upstream repository.
   # This repository also has a Dependabot rule defined to dismiss Dependabot alerts from `manifest:worker/package-lock.json`.
+    ignore:
+      - dependency-name: 
+        - "wrangler"
+        - "@cloudflare/workers-types"
