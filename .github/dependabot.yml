@@ -5,6 +5,8 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 3
 
   # Worker dependencies are not updated by Dependabot as the worker is cloned from an upstream repository.
   # This repository also has a Dependabot rule defined to dismiss Dependabot alerts from `manifest:worker/package-lock.json`.
