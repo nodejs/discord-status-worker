@@ -5,6 +5,10 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    labels:
+      - dependencies
+      - github_actions
+      - auto-merge
     cooldown:
       default-days: 3
 
