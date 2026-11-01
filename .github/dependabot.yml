@@ -11,6 +11,12 @@ updates:
       - auto-merge
     cooldown:
       default-days: 3
+    groups:
+      # Fallback group for all minor/patch updates
+      actions:
+        update-types:
+          - patch
+          - minor
 
   # Worker dependencies are not updated by Dependabot as the worker is cloned from an upstream repository.
   # This repository also has a Dependabot rule defined to dismiss Dependabot alerts from `manifest:worker/package-lock.json`.
