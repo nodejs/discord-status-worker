@@ -3,7 +3,7 @@
 This Cloudflare Worker is made to monitor a status page for incidents. If there is one, it will post into a Discord server (with optional publishing) and continously update the message with incident updates. This allows you to easily track incidents which may be impacting you right inside of Discord.
 
 Want to see it in action?\
-We use this in the [Cloudflare Discord](https://discord.gg/cloudflaredev), come check it out!
+We use this in the [Orange Cloud Discord](https://discord.gg/49SE2dgNsm), come check it out!
 
 ## How do I set this up?
 
