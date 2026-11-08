@@ -23,5 +23,5 @@ git fetch origin "$COMMIT_SHA"
 git reset --hard "$COMMIT_SHA"
 
 for patch in $WORKER_PATCHES/*.patch; do
-    git apply $patch
+    git apply --3way $patch
 done
