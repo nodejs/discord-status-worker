@@ -6,7 +6,7 @@
 
 set -e -o pipefail
 
-COMMIT_SHA="5f99470902069407620b74f2f7f8f2d29a052b5c"
+COMMIT_SHA="77f9180bc40e7e513151718c907a8bb7416f421f"
 WORKER_DIR="$(pwd)/worker"
 WORKER_PATCHES="$(pwd)/patches"
 export GIT_DIR="$(pwd)/.git.worker"
