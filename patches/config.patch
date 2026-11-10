@@ -25,10 +25,10 @@ index 130f875..04aee67 100644
    EXCLUDED_STATUSES: ['maintenance'],
  });
 diff --git a/wrangler.toml b/wrangler.toml
-index efcbbd5..c479286 100644
+index 71d11a3..25cf4e0 100644
 --- a/wrangler.toml
 +++ b/wrangler.toml
-@@ -1,12 +1,15 @@
+@@ -1,16 +1,19 @@
 -name = "status-worker"
 +name = "discord-status-worker"
  workers_dev = false
@@ -37,13 +37,18 @@ index efcbbd5..c479286 100644
  compatibility_date = "2022-10-06"
  main = "src/index.ts"
  
- kv_namespaces = [
--  { binding = "KV", id = "a", preview_id = "a" }
-+  { binding = "KV", id = "c9b168a3b9c3403cb8e7ba48ba5f7309", preview_id = "c9b168a3b9c3403cb8e7ba48ba5f7309" }
- ]
- 
  [triggers]
  crons = ["* * * * *"]
-+
+ 
 +[observability.logs]
 +enabled = true
++
+ [[kv_namespaces]]
+ binding = "KV"
+-id = "abc123"
++id = "c9b168a3b9c3403cb8e7ba48ba5f7309"
+ 
+ [[previews.kv_namespaces]]
+ binding = "KV"
+-id = "abc123"
++id = "c9b168a3b9c3403cb8e7ba48ba5f7309"

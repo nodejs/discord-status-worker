@@ -1,0 +1,34 @@
+diff --git a/.github/dependabot.yml b/.github/dependabot.yml
+deleted file mode 100644
+index ae89cba..0000000
+--- a/.github/dependabot.yml
++++ /dev/null
+@@ -1,28 +0,0 @@
+-version: 2
+-
+-updates:
+-  - package-ecosystem: npm
+-    directory: /
+-    schedule:
+-      interval: monthly
+-
+-    # Only accept updates that have been published for at least 3 days
+-    cooldown:
+-      default-days: 3
+-
+-    # Ensure the new version is stored in `package.json`
+-    versioning-strategy: increase
+-
+-    groups:
+-      # Update `dependencies` and `devDependencies` separately
+-      # Create grouped PRs for minor/patch updates with majors getting dedicated PRs
+-      production:
+-        dependency-type: production
+-        update-types:
+-          - patch
+-          - minor
+-      development:
+-        dependency-type: development
+-        update-types:
+-          - patch
+-          - minor

@@ -2,6 +2,8 @@ import { publishMessage, sendToDiscord } from './discord';
 import { attachDebug } from './utils';
 import Config from './config';
 
+const INCIDENTS_ETAG_KEY = 'incidentsEtag';
+
 export default {
   async fetch(req: Request, env: Env) {
     try {
@@ -26,12 +28,24 @@ export default {
   },
 
   async handleRequest(env: Env) {
-    const incidents = await fetch(`${Config.STATUS_URL}/api/v2/incidents.json`)
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch incidents');
-        return res.json<IncidentResponse>();
-      })
-      .then(res => res.incidents);
+    let storedEtag: string | null = null;
+    // A forced debug update needs the full incident list, so skip the ETag checks
+    if (!globalThis.DEBUG?.updateIncident) {
+      storedEtag = await env.KV.get(INCIDENTS_ETAG_KEY);
+    }
+
+    const headers: Record<string, string> = {};
+    if (storedEtag !== null) headers['If-None-Match'] = storedEtag;
+
+    const incidentsRes = await fetch(`${Config.STATUS_URL}/api/v2/incidents.json`, { headers });
+    const etag = incidentsRes.headers.get('ETag');
+    // Nothing changed since the last successful run, so skip parsing and per-incident KV reads
+    if (incidentsRes.status === 304) return;
+    if (!incidentsRes.ok) throw new Error('Failed to fetch incidents');
+    // Some Statuspage sites ignore If-None-Match and send a 200 with the same ETag
+    if (etag !== null && etag === storedEtag) return;
+    const { incidents } = await incidentsRes.json<IncidentResponse>();
+
     const components = await fetch(`${Config.STATUS_URL}/api/v2/components.json`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch components');
@@ -73,6 +87,11 @@ export default {
     }));
     console.log(`Processed ${res.length} incidents (${res.filter(r => r.status === 'fulfilled').length} successful)`);
     res.forEach(r => r.status === 'rejected' && console.error(r.reason));
+
+    // Only remember this version once every incident went through, so failures are retried next run
+    if (etag && res.every(r => r.status === 'fulfilled')) {
+      await env.KV.put(INCIDENTS_ETAG_KEY, etag);
+    }
   },
 
   async postNew(incident: Incident, components: Component[], env: Env) {
